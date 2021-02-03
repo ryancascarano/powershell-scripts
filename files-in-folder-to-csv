@@ -1,0 +1,7 @@
+$Directory = "C:\path to directory"
+Get-ChildItem -Path $Directory -Recurse -Force | ForEach {
+    [PSCustomObject]@{
+        Name = $_.Name
+        Size = "$([int]($_.length / 1mb)) MB"
+    }
+} | Export-Csv -Path "./temp.csv" -NoTypeInformation
